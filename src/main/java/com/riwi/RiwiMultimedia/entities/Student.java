@@ -28,6 +28,5 @@ public class Student {
     @ManyToOne
     @JoinColumn(name = "id_class")
     private Class classes;
-    //FOREIGN KEY A CLASS
 }
 
