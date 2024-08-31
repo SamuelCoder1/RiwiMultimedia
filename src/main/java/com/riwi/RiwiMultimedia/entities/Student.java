@@ -1,7 +1,13 @@
 package com.riwi.RiwiMultimedia.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,9 +31,11 @@ public class Student {
     @Column(nullable = false)
     private Boolean status = true;
 
+    @Column(name = "create_at")
+    private LocalDateTime createAt;
+
     @ManyToOne
     @JoinColumn(name = "id_class")
     private Class classes;
-    //FOREIGN KEY A CLASS
 }
 
