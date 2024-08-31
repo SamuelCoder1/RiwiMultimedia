@@ -26,8 +26,6 @@ public class Class {
     private String description;
     @Column(nullable = false)
     private Boolean status;
-    @OneToMany(mappedBy = "classes")
-
     @OneToMany(mappedBy = "classes", fetch = FetchType.LAZY)
 
     @JsonManagedReference

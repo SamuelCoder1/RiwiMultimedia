@@ -7,5 +7,5 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 public interface ReadByPages<Entity> {
-    ResponseEntity<List<Student>> readByPages(int page, int size);
+    ResponseEntity<List<Entity>> readByPages(int page, int size);
 }

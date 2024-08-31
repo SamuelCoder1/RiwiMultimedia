@@ -27,9 +27,6 @@ public class StudentDTO {
     private Boolean status = true;
 
     @NotNull(message = "La clase es requerida")
-    private String name;
-    private String document;
-    private String email;
-    private Boolean status = true;
+
     private ClassWithoutStudent classes;
 }

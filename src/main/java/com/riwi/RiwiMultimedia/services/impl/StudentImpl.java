@@ -3,7 +3,6 @@ package com.riwi.RiwiMultimedia.services.impl;
 import com.riwi.RiwiMultimedia.dtos.response.Student.ClassWithoutStudent;
 
 
-import com.riwi.RiwiMultimedia.dtos.response.Class.ClassWithoutStudent;
 import com.riwi.RiwiMultimedia.entities.Class;
 import com.riwi.RiwiMultimedia.entities.Student;
 import com.riwi.RiwiMultimedia.repositories.interfaces.ClassesRepository;
@@ -27,7 +26,6 @@ public class StudentImpl implements IStudentService {
     StudentRepository studentRepository;
 
     @Autowired
-
     ClassesRepository classesRepository;
 
 
@@ -52,18 +50,25 @@ public class StudentImpl implements IStudentService {
     }
     @Override
     public Student create(Student student) {
-        return null;
-
-
         Optional<Class> classOptional = classesRepository.findById(student.getClasses().getId());
         if (!classOptional.isPresent()) {
             throw new IllegalArgumentException("La clase especificada no existe.");
         }
         student.setCreateAt(LocalDateTime.now());
-
-        return studentRepository.save(student);
-        return null;
-
+        Student newStudent = studentRepository.save(student);
+        if (student.getClasses() != null) {
+            ClassWithoutStudent classDTO = new ClassWithoutStudent();
+            classDTO.setId(student.getClasses().getId());
+            classDTO.setName(student.getClasses().getName());
+            classDTO.setDescription(student.getClasses().getDescription());
+            classDTO.setDescription(student.getClasses().getDescription());
+            student.setClasses(Class.builder()
+                    .id(classDTO.getId())
+                    .name(classDTO.getName())
+                    .description(classDTO.getDescription())
+                    .build());
+        }
+        return newStudent;
     }
 
     @Override
@@ -73,9 +78,19 @@ public class StudentImpl implements IStudentService {
 
     @Override
     public Page<Student> readByPages(Pageable pageable) {
+//        if (student.getClasses() != null) {
+//            ClassWithoutStudent classDTO = new ClassWithoutStudent();
+//            classDTO.setId(student.getClasse().getId());
+//            classDTO.setName(student.getClasses().getName());
+//            classDTO.setDescription(student.getClasses().getDescription());
+//            classDTO.setDescription(student.getClasses().getDescription());
+//            student.setClasses(Class.builder()
+//                    .id(classDTO.getId())
+//                    .name(classDTO.getName())
+//                    .description(classDTO.getDescription())
+//                    .build());
+//        }
         return studentRepository.findAll(pageable);
-
-        return null;
     }
 
 

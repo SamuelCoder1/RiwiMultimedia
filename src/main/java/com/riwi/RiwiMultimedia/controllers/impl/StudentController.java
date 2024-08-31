@@ -68,9 +68,6 @@ public class StudentController implements IStudentController {
 
         return new ResponseEntity<>(createdStudent, HttpStatus.CREATED);
 
-    @Override
-    public ResponseEntity<Student> create() {
-        return null;
     }
 
     @Override
@@ -85,16 +82,14 @@ public class StudentController implements IStudentController {
     public ResponseEntity<List<Student>> readByPages(
         @RequestParam(defaultValue = "0") int page,
         @RequestParam(defaultValue = "2") int size) {
-
+        Student student = new Student();
         Pageable pageable = PageRequest.of(page, size);
-        Page<Student> eventosPage = studentService.readByPages(pageable);
+        Page<Student> studentsPage = studentService.readByPages(pageable);
 
-        List<Student> studentsList = eventosPage.getContent();
+        List<Student> studentsList = studentsPage.getContent();
 
         return ResponseEntity.ok(studentsList);
 
-    public ResponseEntity<List<Student>> readByPages(int page, int size) {
-        return null;
     }
 
     @Override

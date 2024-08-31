@@ -12,7 +12,6 @@ import java.util.List;
 public interface IStudentController extends
         ReadById<Student, Integer>
         ,Create<StudentDTO, Student>
-        ,Create<Student>
         ,Update<Integer, Student> {
 
     ResponseEntity<List<Student>> readByPages(int page, int size);
