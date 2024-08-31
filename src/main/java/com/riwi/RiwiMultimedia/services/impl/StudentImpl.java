@@ -1,6 +1,13 @@
 package com.riwi.RiwiMultimedia.services.impl;
 
 import com.riwi.RiwiMultimedia.dtos.response.Student.ClassWithoutStudent;
+
+
+import com.riwi.RiwiMultimedia.dtos.response.Class.ClassWithoutStudent;
+import com.riwi.RiwiMultimedia.entities.Class;
+import com.riwi.RiwiMultimedia.entities.Student;
+import com.riwi.RiwiMultimedia.repositories.interfaces.ClassesRepository;
+import com.riwi.RiwiMultimedia.dtos.response.Student.ClassWithoutStudent;
 import com.riwi.RiwiMultimedia.dtos.response.Student.StudentDTO;
 import com.riwi.RiwiMultimedia.entities.Class;
 import com.riwi.RiwiMultimedia.entities.Student;
@@ -10,12 +17,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 public class StudentImpl implements IStudentService {
 
     @Autowired
     StudentRepository studentRepository;
+
+    @Autowired
+
+    ClassesRepository classesRepository;
 
 
     @Override
@@ -40,6 +53,17 @@ public class StudentImpl implements IStudentService {
     @Override
     public Student create(Student student) {
         return null;
+
+
+        Optional<Class> classOptional = classesRepository.findById(student.getClasses().getId());
+        if (!classOptional.isPresent()) {
+            throw new IllegalArgumentException("La clase especificada no existe.");
+        }
+        student.setCreateAt(LocalDateTime.now());
+
+        return studentRepository.save(student);
+        return null;
+
     }
 
     @Override
@@ -49,6 +73,8 @@ public class StudentImpl implements IStudentService {
 
     @Override
     public Page<Student> readByPages(Pageable pageable) {
+        return studentRepository.findAll(pageable);
+
         return null;
     }
 
