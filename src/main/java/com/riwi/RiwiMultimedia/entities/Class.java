@@ -1,5 +1,6 @@
 package com.riwi.RiwiMultimedia.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.riwi.RiwiMultimedia.dtos.response.Student.StudentWithIdAndName;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -24,7 +25,8 @@ public class Class {
     @Column(length = 225, nullable = false)
     private String description;
 
-    @OneToMany(mappedBy = "classes")
+    @OneToMany(mappedBy = "classes", fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Student> student;
 
 }

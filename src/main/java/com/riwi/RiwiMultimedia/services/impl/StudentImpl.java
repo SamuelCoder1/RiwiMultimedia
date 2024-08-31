@@ -1,6 +1,8 @@
 package com.riwi.RiwiMultimedia.services.impl;
 
 import com.riwi.RiwiMultimedia.dtos.response.Student.ClassWithoutStudent;
+
+import com.riwi.RiwiMultimedia.dtos.response.Student.StudentDTO;
 import com.riwi.RiwiMultimedia.entities.Class;
 import com.riwi.RiwiMultimedia.entities.Student;
 import com.riwi.RiwiMultimedia.repositories.interfaces.StudentRepository;
