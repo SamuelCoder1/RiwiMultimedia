@@ -2,6 +2,8 @@ package com.riwi.RiwiMultimedia.controllers.impl;
 
 import com.riwi.RiwiMultimedia.controllers.interfaces.IStudentController;
 
+
+
 import com.riwi.RiwiMultimedia.dtos.response.Student.StudentDTO;
 import com.riwi.RiwiMultimedia.dtos.response.Student.StudentWithIdAndName;
 import com.riwi.RiwiMultimedia.entities.Class;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+
 import com.riwi.RiwiMultimedia.dtos.response.Student.StudentWithIdAndName;
 import com.riwi.RiwiMultimedia.entities.Student;
 import com.riwi.RiwiMultimedia.services.interfaces.IStudentService;
@@ -30,6 +33,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import java.util.List;
 
 @RestController
@@ -63,6 +67,7 @@ public class StudentController implements IStudentController {
         Student createdStudent = studentService.create(student);
 
         return new ResponseEntity<>(createdStudent, HttpStatus.CREATED);
+
     @Override
     public ResponseEntity<Student> create() {
         return null;
@@ -75,6 +80,7 @@ public class StudentController implements IStudentController {
     }
 
     @Override
+
     @GetMapping("/readByPages")
     public ResponseEntity<List<Student>> readByPages(
         @RequestParam(defaultValue = "0") int page,
@@ -86,6 +92,7 @@ public class StudentController implements IStudentController {
         List<Student> studentsList = eventosPage.getContent();
 
         return ResponseEntity.ok(studentsList);
+
     public ResponseEntity<List<Student>> readByPages(int page, int size) {
         return null;
     }
