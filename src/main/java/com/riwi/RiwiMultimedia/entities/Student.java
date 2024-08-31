@@ -1,5 +1,6 @@
 package com.riwi.RiwiMultimedia.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 @Data
@@ -28,6 +29,5 @@ public class Student {
     @ManyToOne
     @JoinColumn(name = "id_class")
     private Class classes;
-    //FOREIGN KEY A CLASS
 }
 
