@@ -26,7 +26,6 @@ public class Class {
     private String description;
 
     @OneToMany(mappedBy = "classes", fetch = FetchType.LAZY)
-    @JsonManagedReference
     private List<Student> student;
 
 }

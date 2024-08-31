@@ -1,4 +1,4 @@
-package com.riwi.RiwiMultimedia.dtos.response.Student;
+package com.riwi.RiwiMultimedia.dtos.response.Class;
 
 import com.riwi.RiwiMultimedia.entities.Student;
 import jakarta.persistence.*;
