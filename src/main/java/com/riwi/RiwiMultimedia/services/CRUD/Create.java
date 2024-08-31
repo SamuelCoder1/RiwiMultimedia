@@ -1,5 +1,7 @@
 package com.riwi.RiwiMultimedia.services.CRUD;
 
-public interface Create<EntityRequest, Entity> {
-    public Entity create(EntityRequest entity);
+import org.springframework.http.ResponseEntity;
+
+public interface Create<Entity> {
+    public Entity create(Entity entity);
 }
