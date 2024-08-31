@@ -1,19 +1,15 @@
 package com.riwi.RiwiMultimedia.services.impl;
 
 import com.riwi.RiwiMultimedia.dtos.response.Student.ClassWithoutStudent;
-import com.riwi.RiwiMultimedia.dtos.response.Student.StudentWithIdAndName;
+import com.riwi.RiwiMultimedia.dtos.response.Student.StudentDTO;
 import com.riwi.RiwiMultimedia.entities.Class;
 import com.riwi.RiwiMultimedia.entities.Student;
 import com.riwi.RiwiMultimedia.repositories.interfaces.StudentRepository;
 import com.riwi.RiwiMultimedia.services.interfaces.IStudentService;
-import jakarta.persistence.Id;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class StudentImpl implements IStudentService {
@@ -27,12 +23,18 @@ public class StudentImpl implements IStudentService {
         Student student = studentRepository.findById(id).orElseThrow();
 
         if (student.getClasses() != null) {
-            ClassWithoutStudent classWithoutStudent = new ClassWithoutStudent();
-            classWithoutStudent.setId(student.getClasses().getId());
-            classWithoutStudent.setName(student.getClasses().getName());
-            classWithoutStudent.setDescription(student.getClasses().getDescription());
-
+            ClassWithoutStudent classDTO = new ClassWithoutStudent();
+            classDTO.setId(student.getClasses().getId());
+            classDTO.setName(student.getClasses().getName());
+            classDTO.setDescription(student.getClasses().getDescription());
+            classDTO.setDescription(student.getClasses().getDescription());
+            student.setClasses(Class.builder()
+                            .id(classDTO.getId())
+                            .name(classDTO.getName())
+                            .description(classDTO.getDescription())
+                    .build());
         }
+
         return student;
     }
     @Override
