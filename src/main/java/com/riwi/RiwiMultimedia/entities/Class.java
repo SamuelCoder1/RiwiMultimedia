@@ -23,7 +23,8 @@ public class Class {
 
     @Column(length = 225, nullable = false)
     private String description;
-
+    @Column(nullable = false)
+    private Boolean status;
     @OneToMany(mappedBy = "classes")
     private List<Student> student;
 
