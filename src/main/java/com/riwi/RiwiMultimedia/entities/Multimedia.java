@@ -2,12 +2,14 @@ package com.riwi.RiwiMultimedia.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity(name = "multimedia")
 public class Multimedia {
     @Id
@@ -23,4 +25,11 @@ public class Multimedia {
 
     @Column(length = 100)
     private String document;
+
+    @ManyToOne
+    @JoinColumn(name = "id_lesson")
+    private Lesson lesson;
+
+    @Column(nullable = false)
+    private Boolean active = true;
 }

@@ -8,7 +8,6 @@ public class RiwiMultimediaApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(RiwiMultimediaApplication.class, args);
-		System.out.println("Hello World");
 	}
 
 }

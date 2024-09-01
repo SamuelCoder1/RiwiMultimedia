@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -22,11 +23,21 @@ public class Lesson {
     @Column(length = 100, nullable = false)
     private String title;
 
-    @OneToMany
-    @JoinColumn(name = "id_lesson")
-    private List<Multimedia> multimedia;
-
     @ManyToOne
     @JoinColumn(name = "id_class")
     private Class classes;
+
+    @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Multimedia> multimedia;
+
+    @Column(nullable = false)
+    private Boolean active = true;
+
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+    }
 }
