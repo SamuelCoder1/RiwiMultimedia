@@ -1,6 +1,8 @@
 package com.riwi.RiwiMultimedia.controllers.impl;
 
 import com.riwi.RiwiMultimedia.controllers.interfaces.IStudentController;
+<<<<<<< HEAD
+=======
 
 
 
@@ -24,26 +26,32 @@ import java.util.List;
 import java.util.Optional;
 
 import com.riwi.RiwiMultimedia.dtos.response.Student.StudentWithIdAndName;
+>>>>>>> 5b1ee6c456ca4d621d2d2e9ca96c434c8476dde0
 import com.riwi.RiwiMultimedia.entities.Student;
 import com.riwi.RiwiMultimedia.services.interfaces.IStudentService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("students")
-@Tag(name = "Students", description = "Este es el controlador de los Estudiantes")
+@RequestMapping("/api/v1/students")
+@Tag(name = "Students", description = "Controlador para manejar operaciones de estudiantes")
 public class StudentController implements IStudentController {
 
     @Autowired
     IStudentService studentService;
 
+<<<<<<< HEAD
+    @Override
+    @PostMapping
+    public ResponseEntity<Student> create(@RequestBody @Valid Student student) {
+        Student createdStudent = studentService.create(student);
+        return ResponseEntity.status(201).body(createdStudent);
+=======
     @Autowired
     ClassesRepository classesRepository;
 
@@ -68,6 +76,7 @@ public class StudentController implements IStudentController {
 
         return new ResponseEntity<>(createdStudent, HttpStatus.CREATED);
 
+>>>>>>> 5b1ee6c456ca4d621d2d2e9ca96c434c8476dde0
     }
 
     @Override
@@ -77,6 +86,11 @@ public class StudentController implements IStudentController {
     }
 
     @Override
+<<<<<<< HEAD
+    public ResponseEntity<List<Student>> readByPages(int page, int size) {
+        // Implementación de paginación si es necesaria
+        return null;
+=======
 
     @GetMapping("/readByPages")
     public ResponseEntity<List<Student>> readByPages(
@@ -90,10 +104,12 @@ public class StudentController implements IStudentController {
 
         return ResponseEntity.ok(studentsList);
 
+>>>>>>> 5b1ee6c456ca4d621d2d2e9ca96c434c8476dde0
     }
 
     @Override
-    public ResponseEntity<Student> update(Integer integer, Student student) {
+    public ResponseEntity<Student> update(Integer id, Student student) {
+        // Implementación de actualización si es necesaria
         return null;
     }
 }

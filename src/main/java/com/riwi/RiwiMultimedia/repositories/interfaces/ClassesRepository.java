@@ -4,4 +4,6 @@ import com.riwi.RiwiMultimedia.entities.Class;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ClassesRepository extends JpaRepository<Class, Integer> {
+    Class findByName(String nombre);
+    Class findByDescription(String descripcion);
 }
